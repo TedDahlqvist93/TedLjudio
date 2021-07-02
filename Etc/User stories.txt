@@ -1,0 +1,3 @@
+Slutprodukten ska som ett minimum vara en fungerande webbapplikation 
+där en användare kan söka och lyssna på musik i ett interaktivt gränssnitt 
+med flera vyer, samt kunna skapa och dela spellistor.  
