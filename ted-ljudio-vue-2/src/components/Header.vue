@@ -1,16 +1,22 @@
 <template>
   <v-app>
-    <v-app-bar color="green" app flat>
+    <v-app-bar color="green" app>
       <v-spacer></v-spacer>
-      <v-text-field
-        background-color="grey lighten-1"
-        
-        flat
-        hide-details
-        rounded
-        sol
-      ></v-text-field>
-      <v-btn rounded dark  color="black">Search</v-btn>
+      <v-responsive>
+        <v-text-field
+          background-color="white"
+          flat
+          hide-details
+          rounded
+          sol
+        ></v-text-field>
+      </v-responsive>
+      <v-btn rounded 
+      dark 
+      color="black"
+      @click="search(query)"
+      
+      >Search</v-btn>
 
       <v-spacer></v-spacer>
     </v-app-bar>
@@ -20,7 +26,7 @@
 <script>
 export default {
   name: "Header",
-};
+  }
 </script>
 
 <style>
