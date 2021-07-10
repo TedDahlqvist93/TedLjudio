@@ -1,23 +1,23 @@
 <template>
   <v-app>
-      <header>
-        <Header />
-      </header>
-        <v-main>
-          <v-container>
-            <v-row>
-              <v-col>
-                <v-card color="grey" height="100%">
-                    
-                </v-card>
-              </v-col>
-              <v-col><v-card color="grey"><Playlist /></v-card> </v-col
-            ></v-row>
-          </v-container>
-        </v-main>
-        <v-footer>
-          <MediaController />
-        </v-footer>
+    <v-app-bar>
+      <Header />
+    </v-app-bar>
+    <v-main>
+      <v-container>
+        <v-row>
+          <v-col>
+            <v-sheet color="grey" height="100%"> </v-sheet>
+          </v-col>
+          <v-col
+            ><v-sheet color="grey"><Playlist /> </v-sheet>
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-main>
+    <v-footer>
+      <MediaController />
+    </v-footer>
   </v-app>
 </template>
 
