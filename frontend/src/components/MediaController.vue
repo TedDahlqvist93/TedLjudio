@@ -14,32 +14,34 @@
             </v-row>
             <v-row>
               <v-spacer></v-spacer>
-              <v-btn rounded dark color="black"
+              <v-btn @click="pause(false)" rounded dark color="black"
                 ><v-icon>mdi-pause</v-icon></v-btn
               >
-              <v-btn rounded dark color="black"
+              <v-btn @click="play(false)" rounded dark color="black"
                 ><v-icon>mdi-play</v-icon></v-btn
-              >
-              <v-btn rounded dark color="black"
-                ><v-icon>mdi-stop</v-icon></v-btn
               >
               <v-spacer></v-spacer>
               <div>
                 <v-icon large>mdi-volume-high</v-icon>
               </div>
-              <v-slider color="black"></v-slider>
+              <v-slider
+                @drag="changeVolume()"
+                v-model="value"
+                @input="changeVolume(value)"
+                color="black"
+              ></v-slider>
               <v-spacer></v-spacer>
             </v-row>
           </v-col>
-            <youtube
-              :video-id="videoId"
-              ref="youtube"
-              :player-vars="playerVars"
-              @ready="load()"
-              resize
-              width="160"
-              height="90"
-            ></youtube>
+          <youtube
+            :video-id="videoId"
+            ref="youtube"
+            :player-vars="playerVars"
+            @ready="load()"
+            resize
+            width="160"
+            height="90"
+          ></youtube>
         </v-row>
       </v-container>
     </v-app-bar>
@@ -53,11 +55,15 @@ export default {
   data() {
     return {
       videoId: "",
+      trackValue: "",
+      value: "100",
+      startSeconds: "",
+      endSeconds: "",
       playerVars: {
         autoplay: 1,
         controls: 0,
         autohide: 1,
-        origin: 'http://localhost:8080',
+        origin: "http://localhost:8080",
       },
     };
   },
@@ -68,18 +74,15 @@ export default {
     video() {
       return this.$store.state.currentSong.id;
     },
-    play() {
-      return this.$store.state.player.isPlaying;
-    },
 
-    pause() {
-      return this.$store.state.player.isPlaying;
-    },
     volume() {
       return this.$store.state.player.volume;
     },
   },
   watch: {
+    getSong(song) {
+      this.song = song;
+    },
     video(id) {
       this.videoId = id;
     },
@@ -101,6 +104,15 @@ export default {
     load() {
       this.$refs.youtube.player.cueVideoById(this.$store.state.currentSong.id);
       this.$store.commit("setIsPlaying", false);
+    },
+    changeVolume(volume) {
+      this.$store.commit("setVolume", volume);
+    },
+    play(bool) {
+      this.$store.commit("setIsPlaying", bool);
+    },
+    pause(bool) {
+      this.$store.commit("setIsPlaying", bool);
     },
   },
 };

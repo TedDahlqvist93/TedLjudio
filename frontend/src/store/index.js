@@ -159,6 +159,34 @@ export default new Vuex.Store({
                     return response
                 })
         },
+            async addPlaylist() {
+      let promptTitle = prompt("Playlist name: ", "");
+      if (promptTitle && promptTitle.trim()) {
+        let data = {
+          title: promptTitle.trim(),
+          ext_id: await this.generateExtId(),
+        };
+        if (data && data.title) {
+          await fetch("/api/playlists", {
+            method: "POST",
+            body: JSON.stringify(data),
+            cache: "no-cache",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          })
+            .then((r) => r.json())
+            .then((d) => {
+              if (d.affectedRows > 0) {
+                this.fetch_playlists();
+              }
+            })
+            .catch((e) => {
+              console.error("Error:", e);
+            });
+        }
+      }
+    },
         async deletePlaylist({ dispatch }, data) {
             await axios.delete(`/api/playlists/${data.userId}/${data.id}`)
                 .then(response => {

@@ -54,11 +54,6 @@ export default {
     ...mapGetters(["getSearchList"]),
     ...mapGetters(["getCurrentPlaylist"]),
   },
-  watch: {
-    getSong(song) {
-      this.song = song;
-    },
-  },
   methods: {
     async update() {
       this.selected = this.$store.state.currentPlaylist;

@@ -11,8 +11,13 @@
                 </v-list-item-title>
               </v-col>
 
-              <v-btn rounded dark color="black" right large @click="remove(playlist.id)"
-                
+              <v-btn
+                rounded
+                dark
+                color="black"
+                right
+                large
+                @click="remove(playlist.id)"
                 ><v-icon>mdi-trash-can</v-icon></v-btn
               >
             </v-row></v-list-item-content
@@ -28,17 +33,17 @@
     </div>
     <div v-else>
       <v-sheet color="grey" dark>
-      <v-text-field
-        @submit.prevent="name"
-        v-model="name"
-        dense
-        flat
-        solo-inverted
-        placeholder="Playlist name"
-      >
-      </v-text-field>
-      <v-btn small rounded dark color="black" @click="add">Add</v-btn>
-      <v-btn small rounded dark color="black" @click="clicked">Cancel</v-btn>
+        <v-text-field
+          @submit.prevent="name"
+          v-model="name"
+          dense
+          flat
+          solo-inverted
+          placeholder="Playlist name"
+        >
+        </v-text-field>
+        <v-btn small rounded dark color="black" @click="add">Add</v-btn>
+        <v-btn small rounded dark color="black" @click="clicked">Cancel</v-btn>
       </v-sheet>
     </div>
   </div>
