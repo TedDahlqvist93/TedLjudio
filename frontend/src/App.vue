@@ -7,10 +7,10 @@
       <v-container>
         <v-row>
           <v-col>
-            <v-sheet color="grey" height="100%"> </v-sheet>
+            <v-sheet color="grey" height="100%"><SearchResults/> </v-sheet>
           </v-col>
           <v-col
-            ><v-sheet color="grey"><Playlist /> </v-sheet>
+            ><v-sheet color="grey"><Playlist/> </v-sheet>
           </v-col>
         </v-row>
       </v-container>
@@ -25,6 +25,7 @@
 import MediaController from "./components/MediaController.vue";
 import Header from "./components/Header.vue";
 import Playlist from "./components/Playlist.vue";
+import SearchResults from "./components/SearchResults.vue";
 import { mapActions, mapGetters } from "vuex";
 
 export default {
@@ -34,6 +35,7 @@ export default {
     Playlist,
     Header,
     MediaController,
+    SearchResults
   },
   data() {
     return {
@@ -79,3 +81,10 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+body {
+    overflow: hidden;
+    height: 100vh;
+}
+</style>
