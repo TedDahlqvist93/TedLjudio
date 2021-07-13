@@ -4,6 +4,7 @@
       <v-spacer></v-spacer>
       <v-responsive>
         <v-text-field
+          v-model="query"
           background-color="white"
           flat
           hide-details
@@ -11,12 +12,7 @@
           sol
         ></v-text-field>
       </v-responsive>
-      <v-btn rounded 
-      dark 
-      color="black"
-      @click="search(query)"
-      
-      >Search</v-btn>
+      <v-btn @click="search(query)" rounded dark color="black" >Search</v-btn>
 
       <v-spacer></v-spacer>
     </v-app-bar>
@@ -24,9 +20,30 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
 export default {
   name: "Header",
-  }
+  data() {
+    return {
+      query: "",
+    };
+  },
+
+  methods: {
+    ...mapActions(["searchSong"]),
+
+    search(query) {
+      this.searchSong(query);
+    },
+    computed: {
+      getSong() {
+        return this.$store.state.currentSong.title;
+      },
+
+      ...mapGetters(["getSearchList"]),
+    },
+  },
+};
 </script>
 
 <style>
