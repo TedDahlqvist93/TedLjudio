@@ -14,11 +14,24 @@
             </v-row>
             <v-row>
               <v-spacer></v-spacer>
-              <v-btn @click="pause(false)" rounded dark color="black"
+              <v-btn @click="playPause(true)" rounded dark color="black"
+                ><v-icon>mdi-play</v-icon></v-btn
+              >
+              <v-btn @click="playPause(false)" rounded dark color="black"
                 ><v-icon>mdi-pause</v-icon></v-btn
               >
-              <v-btn @click="play(false)" rounded dark color="black"
+              <v-spacer></v-spacer>
+              <v-btn
+                v-if="!this.$store.state.player.isPlaying"
+                @click="playPause(true)"
+                rounded
+                dark
+                color="black"
                 ><v-icon>mdi-play</v-icon></v-btn
+              >
+
+              <v-btn v-else @click="playPause(false)" rounded dark color="black"
+                ><v-icon>mdi-pause</v-icon></v-btn
               >
               <v-spacer></v-spacer>
               <div>
@@ -62,7 +75,6 @@ export default {
       playerVars: {
         autoplay: 1,
         controls: 0,
-        autohide: 1,
         origin: "http://localhost:8080",
       },
     };
@@ -74,7 +86,12 @@ export default {
     video() {
       return this.$store.state.currentSong.id;
     },
-
+    play() {
+      return this.$store.state.player.isPlaying;
+    },    
+    pause() {
+      return this.$store.state.player.isPlaying;
+    },
     volume() {
       return this.$store.state.player.volume;
     },
@@ -108,10 +125,7 @@ export default {
     changeVolume(volume) {
       this.$store.commit("setVolume", volume);
     },
-    play(bool) {
-      this.$store.commit("setIsPlaying", bool);
-    },
-    pause(bool) {
+    playPause(bool) {
       this.$store.commit("setIsPlaying", bool);
     },
   },

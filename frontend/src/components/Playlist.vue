@@ -88,6 +88,7 @@ export default {
     ...mapActions(["deletePlaylist"]),
     ...mapActions(["getSongs"]),
     ...mapMutations(["setCurrentPlaylist"]),
+    
     async clicked() {
       this.addClicked = !this.addClicked;
       await this.$nextTick();
