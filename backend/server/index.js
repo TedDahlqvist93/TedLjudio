@@ -2,8 +2,20 @@
 const port = 3000
 
 // express server
-const express = require('express')
-const app = express()
+const express = require("express");
+const app = express();
+
+const cors = require("cors");
+
+app.use(cors({
+    'Access-Control-Allow-Origin': 'http://localhost:8080',
+    'Access-Control-Allow-Credentials': true,
+    'origin': 'http://localhost:8080',
+    'allowedHeaders': ['Content-Type'],
+    'Access-Control-Allow-Methods': '*',
+    'preflightContinue': true,
+    'credentials': true
+}));
 
 // add body-parser to express
 const bodyParser = require('body-parser')
