@@ -1,51 +1,68 @@
 <template>
-  <div class="main">
-    <v-list color="grey">
-      <v-list-item-group v-model="selectedPlaylist" color="black">
-        <v-list-item v-for="(playlist, id) in playlists" :key="id">
-          <v-list-item-content>
-            <v-row
-              ><v-col>
-                <v-list-item-title v-text="playlist.name">
-                  {{ playlist.name }}
-                </v-list-item-title>
+  <div>
+    <v-sheet>
+      <v-list color="grey">
+        <v-list-item-group v-model="selectedPlaylist" color="black">
+          <v-list-item  v-for="(playlist, id) in playlists" :key="id">
+            <v-list-item-content de >
+              <v-row >
+                <v-col  md=10>
+                  <v-list-item-title v-text="playlist.name">
+                    {{ playlist.name }}
+                  </v-list-item-title>
+                </v-col>
+                <v-col md="2">
+                <v-btn
+                  rounded
+                  dark
+                  color="black"
+                  right
+                  @click="remove(playlist.id)"
+                  ><v-icon>mdi-trash-can</v-icon></v-btn
+                ></v-col>
+              </v-row></v-list-item-content
+            >
+          </v-list-item>
+        </v-list-item-group>
+      </v-list>
+    </v-sheet>
+
+    <v-sheet>
+      <v-row justify="center">
+      <v-dialog v-model="dialog" max-width="300">
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn color="black" dark v-bind="attrs" v-on="on" rounded>
+            Add playlist
+          </v-btn>
+        </template>
+        <v-card>
+          <v-card-title> Add Playlist </v-card-title>
+          <v-container>
+            <v-row>
+              <v-col cols="12">
+                <v-text-field
+                  @submit.prevent="playlist.name"
+                  @click="clicked"
+                  v-model="playlist.name"
+                  label="Playlist name"
+                  required
+                ></v-text-field>
               </v-col>
-
-              <v-btn
-                rounded
-                dark
-                color="black"
-                right
-                large
-                @click="remove(playlist.id)"
-                ><v-icon>mdi-trash-can</v-icon></v-btn
-              >
-            </v-row></v-list-item-content
-          >
-        </v-list-item>
-      </v-list-item-group>
-    </v-list>
-
-    <div v-if="!this.addClicked">
-      <v-btn rounded small color="black" dark @click="clicked" max-width="120">
-        Add playlist
-      </v-btn>
-    </div>
-    <div v-else>
-      <v-sheet color="grey" dark>
-        <v-text-field
-          @submit.prevent="name"
-          v-model="name"
-          dense
-          flat
-          solo-inverted
-          placeholder="Playlist name"
-        >
-        </v-text-field>
-        <v-btn small rounded dark color="black" @click="add">Add</v-btn>
-        <v-btn small rounded dark color="black" @click="clicked">Cancel</v-btn>
-      </v-sheet>
-    </div>
+            </v-row>
+          </v-container>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="black" dark rounded @click="add">
+              Add Playlist
+            </v-btn>
+            <v-btn color="black" dark rounded @click="dialog = false">
+              Cancel
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+      </v-row>
+    </v-sheet>
   </div>
 </template>
 
@@ -56,9 +73,10 @@ export default {
   name: "Playlist",
   data() {
     return {
+      dialog: false,
       selectedPlaylist: 0,
       addClicked: false,
-      name: "",
+      playlist: {},
     };
   },
   computed: {
@@ -88,7 +106,7 @@ export default {
     ...mapActions(["deletePlaylist"]),
     ...mapActions(["getSongs"]),
     ...mapMutations(["setCurrentPlaylist"]),
-    
+
     async clicked() {
       this.addClicked = !this.addClicked;
       await this.$nextTick();

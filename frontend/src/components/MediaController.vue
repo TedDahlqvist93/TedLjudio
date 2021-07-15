@@ -7,9 +7,16 @@
           <v-col>
             <v-row color="green">
               <v-col>
-                <v-card flat color="green"
-                  ><v-slider color="black" height="20px"></v-slider></v-card
-                ><v-spacer></v-spacer>
+ <!--                <v-card flat color="green"
+                  ><v-slider color="black" height="20px"></v-slider></v-card> --> 
+                <v-spacer></v-spacer>
+              </v-col>
+            </v-row>
+            <v-row color="green">
+              <v-col>
+ <!--                <v-card flat color="green"
+                  ><v-slider color="black" height="20px"></v-slider></v-card> --> 
+                <v-spacer></v-spacer>
               </v-col>
             </v-row>
             <v-row>

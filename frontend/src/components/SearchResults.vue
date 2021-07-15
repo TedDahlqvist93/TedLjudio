@@ -1,20 +1,27 @@
 <template>
     <div>
-      <v-list color="grey">
+      <v-list  color="grey">
         <v-list-item-group color="black">
           <v-list-item @click="setSong(song)" v-for="song in this.$store.state.searchList.songs" :key="song.videoId">
             <v-list-item-content>
               <v-row>
-                <v-col>
+                <v-col md="5">
                   <v-list-item-title>
-                    {{ song.name }}-{{ song.artist.name}}
+                    {{ song.name }}
                   </v-list-item-title>
                 </v-col>
-                <v-btn v-on:click="add(song)" rounded dark color="black" right large>
+                <v-col md="5">
+                  <v-list-item-title>
+                    {{ song.artist.name}}
+                  </v-list-item-title>
+                </v-col>
+                <v-col md="2">
+                <v-btn v-on:click="add(song)" rounded dark color="black" right>
                   <v-icon>
                     mdi-plus
                   </v-icon>
                 </v-btn>
+                </v-col>
               </v-row>
             </v-list-item-content>
 
