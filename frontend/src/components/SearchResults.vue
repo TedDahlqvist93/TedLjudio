@@ -1,6 +1,6 @@
 <template>
     <div>
-      <v-list  color="grey">
+      <v-list  color="grey" >
         <v-list-item-group color="black">
           <v-list-item @click="setSong(song)" v-for="song in this.$store.state.searchList.songs" :key="song.videoId">
             <v-list-item-content>

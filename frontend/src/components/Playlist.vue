@@ -1,5 +1,6 @@
 <template>
   <div>
+    <v-row> <v-col>
     <v-sheet>
       <v-list color="grey">
         <v-list-item-group v-model="selectedPlaylist" color="black">
@@ -26,6 +27,7 @@
         </v-list-item-group>
       </v-list>
     </v-sheet>
+</v-col></v-row>
 
     <v-sheet>
       <v-row justify="center">
@@ -63,6 +65,34 @@
       </v-dialog>
       </v-row>
     </v-sheet>
+   <v-row> <v-col>
+        <v-sheet>
+      <v-list color="grey">
+        <v-list-item-group v-model="selectedPlaylist" color="black">
+          <v-list-item  v-for="(playlist, id) in playlists" :key="id">
+            <v-list-item-content de >
+              <v-row >
+                <v-col  md=10>
+                  <v-list-item-title v-text="playlist.name">
+                    {{ playlist.name }}
+                  </v-list-item-title>
+                </v-col>
+                <v-col md="2">
+                <v-btn
+                  rounded
+                  dark
+                  color="black"
+                  right
+                  @click="remove(playlist.id)"
+                  ><v-icon>mdi-trash-can</v-icon></v-btn
+                ></v-col>
+              </v-row></v-list-item-content
+            >
+          </v-list-item>
+        </v-list-item-group>
+      </v-list>
+    </v-sheet>
+    </v-col></v-row>
   </div>
 </template>
 
