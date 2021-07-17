@@ -72,18 +72,14 @@
       <v-col>
         <v-sheet>
           <v-list color="grey">
-            <v-list-item-group v-model="selectedPlaylist" color="black">
+            <v-list-item-group v-model="playlistSongs" color="black">
               <v-list-item v-for="(playlist, id) in playlists" :key="id">
-                <v-list-item-content de>
-                  <v-row>
-                  </v-row></v-list-item-content
-                >
+                <v-list-item-content de> <v-row> </v-row></v-list-item-content>
               </v-list-item>
             </v-list-item-group>
           </v-list>
-        </v-sheet>
-      </v-col></v-row
-    >
+        </v-sheet> </v-col
+    ></v-row>
   </div>
 </template>
 
@@ -96,9 +92,9 @@ export default {
     return {
       addDialog: false,
       selectedPlaylist: 0,
+      playlistSongs: 0,
       addClicked: false,
-        name: ''
-      ,
+      name: "",
     };
   },
   computed: {
@@ -115,8 +111,8 @@ export default {
   },
   async mounted() {
     await this.getPlaylists(this.$store.state.user.id)
-      .then((response) => {
-        console.log(response);
+      .then(() => {
+        console.log();
       })
       .catch((err) => {
         console.log(err);
@@ -142,10 +138,11 @@ export default {
 
       await this.addPlaylist(data).then(() => {
         this.addClicked = !this.addClicked;
+        
+        console.log("Added " + this.name + " as a new playlist for User ID " + id)
         this.name = "";
         this.addDialog = false;
       });
-
     },
 
     async remove(id) {

@@ -144,8 +144,7 @@ export default new Vuex.Store({
                 })
         },
         async getPlaylists({ commit }, data) {
-            console.log("get lists")
-            console.log(data)
+            console.log("Getting playlists for User ID: " + data)
             await axios.get(`http://localhost:3000/api/playlists/${data}`, {
                 withCredentials: true
             }).then(response => {
