@@ -23,14 +23,13 @@
               ></v-text-field>
             </v-col>
           </v-row>
-        </v-container>
-        <v-card-actions>
-          <v-spacer></v-spacer>
+        </v-container><v-card-actions>
+          <v-spacer> </v-spacer>
           <v-btn color="black" dark rounded @click="submitLogin"> Login </v-btn>
           <v-btn color="black" dark rounded @click="loginDialog = false">
             Cancel
           </v-btn>
-        </v-card-actions>
+          </v-card-actions>
       </v-card>
     </v-dialog>
 
@@ -90,10 +89,9 @@ export default {
   components: {},
   data() {
     return {
+      user: this.getUser(),
       registerDialog: false,
       loginDialog: false,
-      user: this.getUser(),
-      loginModal: false,
       loginForm: {
         email: "",
         password: "",
@@ -122,10 +120,11 @@ export default {
             this.user = this.getUser();
             if (this.user.loggedIn) {
               this.registerForm = {};
-              this.registerModal = false;
-              this.loginModal = false;
+              this.registerDialog = false;
+              this.loginDialog = false;
             }
         })
+        
         .catch((error) => {
           console.log("err", error);
         });
@@ -133,8 +132,8 @@ export default {
     async logOut() {
       await this.logout(this.user)
         .then(() => {
-          this.registerModal = false;
-          this.loginModal = false;
+          this.registerDialog = false;
+          this.loginDialog = false;
           this.user = this.getUser();
         })
         .catch((error) => {
@@ -144,8 +143,8 @@ export default {
     async submitLogin() {
         await this.login(this.loginForm)
         .then(() => {
-            this.registerModal = false;
-            this.loginModal = false;
+            this.registerDialog = false;
+            this.loginDialog = false;
             this.user = this.getUser();
         })
         .catch((error) => {

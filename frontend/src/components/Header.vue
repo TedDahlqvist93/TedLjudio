@@ -15,25 +15,24 @@
       <v-btn @click="search(query)" rounded dark color="black">Search</v-btn>
 
       <v-spacer></v-spacer>
-      <LoginLogoutRegister/>
+      <LoginLogoutRegister />
     </v-app-bar>
   </v-app>
 </template>
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import LoginLogoutRegister from "./LoginLogoutRegister.vue"
+import LoginLogoutRegister from "./LoginLogoutRegister.vue";
 export default {
   name: "Header",
-  components:{
-    LoginLogoutRegister
+  components: {
+    LoginLogoutRegister,
   },
   data() {
     return {
       query: "",
     };
   },
-  
 
   methods: {
     ...mapActions(["searchSong"]),
@@ -41,13 +40,13 @@ export default {
     search(query) {
       this.searchSong(query);
     },
-    computed: {
-      getSong() {
-        return this.$store.state.currentSong.title;
-      },
-
-      ...mapGetters(["getSearchList"]),
+  },
+  computed: {
+    getSong() {
+      return this.$store.state.currentSong.title;
     },
+
+    ...mapGetters(["getSearchList"]),
   },
 };
 </script>

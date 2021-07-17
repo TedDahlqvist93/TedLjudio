@@ -62,6 +62,10 @@ export default {
       });
     },
 
+  mounted() {
+    this.$store.dispatch("getUser");
+  },
+
     ...mapActions(["searchSong"]),
 
     changeVolume(volume) {

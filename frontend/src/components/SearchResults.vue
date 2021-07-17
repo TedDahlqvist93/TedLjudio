@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div><v-row> <v-col>
       <v-list  color="grey" >
         <v-list-item-group color="black">
           <v-list-item @click="setSong(song)" v-for="song in this.$store.state.searchList.songs" :key="song.videoId">
@@ -29,6 +29,9 @@
           </v-list-item>
         </v-list-item-group>
       </v-list>
+      
+    </v-col>
+    </v-row>
     </div>
 </template>
 
@@ -40,8 +43,8 @@ export default {
   data() {
     return {
       result: this.$store.state.searchList,
-      playlist: this.$store.state.currentPlaylist 
-    }
+      playlist: this.$store.state.currentPlaylist,
+    };
   },
   computed: {},
   methods: {
@@ -50,39 +53,37 @@ export default {
     setSong(song) {
       this.$store.commit("setIsPlaying", false);
       this.$store.commit("setCurrentSong", {
-        id: '',
-        title: '',
-        artist: '',
-        album: '',
-      })
+        id: "",
+        title: "",
+        artist: "",
+        album: "",
+      });
       this.$store.commit("setCurrentSong", {
         id: song.videoId,
         title: song.name,
         artist: song.artist.name,
         album: song.album.name,
       });
-      
+
       this.$store.commit("setIsPlaying", true);
     },
     async add(song) {
-      let plist = this.$store.state.currentPlaylist
-      if (plist === undefined) return
+      let plist = this.$store.state.currentPlaylist;
+      if (plist === undefined) return;
       const format = {
         id: this.$store.state.currentPlaylist.id,
         key: song.videoId,
         userId: this.$store.state.user.id,
         title: song.name,
         artist: song.artist.name,
-        album: song.album.name
-      }
-      await this.addSong(format)
-      .then(response => {
-        console.log(response)
-      })
-    }
+        album: song.album.name,
+      };
+      await this.addSong(format).then((response) => {
+        console.log(response);
+      });
+    },
   },
 };
 </script>
 <style>
-
 </style>
